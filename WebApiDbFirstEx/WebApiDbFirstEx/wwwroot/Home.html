@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+                    { name: 'Id', type: 'number' },
+                    { name: 'Name', type: 'string' },
+                    { name: 'Age', type: 'number' },
+                    { name: 'Course', type: 'string' },
+                    { name: 'Email', type: 'string' },
+                    { name: 'Contact', type: 'string' }
+                ],
+                url: 'https://localhost:44340/api/Students'
+            }
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            $("#gridStudents").jqxGrid(
+                {
+                    width: 1000,
+                    source: dataAdapter,
+                    pageable: true,
+                    sortable: true,
+                    columns: [
+                        { text: "Student Id", datafield: "Id", cellsalign: 'center' },
+                        { text: "Student Name", datafield: "Name", cellsalign: 'center' },
+                        { text: "Student Age", datafield: "Age", cellsalign: 'center' },
+                        { text: "Student Course", datafield: "Course", cellsalign: 'center' },
+                        { text: "Student Email", datafield: "Email", cellsalign: 'center' },
+                        { text: "Student Contact", datafield: "Contact", cellsalign: 'center' }
+                    ]
+                });
+        });
+    </script>
+    <div class="container">
+        <div class="jumbotron bg-info text-white text-center ">
+            <h3>Students Detail</h3>
+            <p>We are going tp show data from our core .net api here. </p>
+        </div>
+    </div>
+    <div class="container">
+        <div id="gridStudents" class="container bg-success text-center m-2 p-2 "></div>
+    </div>
+</body>
+</html>
